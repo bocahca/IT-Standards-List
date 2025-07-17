@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('item');
-            $table->string('standard');
-            $table->string('recommendation');
+            $table->string('standard')->nullable();
+            $table->string('recommendation')->nullable();
             $table->timestamps();
         });
     }
