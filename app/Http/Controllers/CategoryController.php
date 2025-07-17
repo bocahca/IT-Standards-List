@@ -11,11 +11,14 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::with(['items' => function($q){
-            $q->latest()->take(4);
-        }])->orderBy('created_at', 'desc')->paginate(10);
+        $q = $request->input('q');
+
+
+        $categories = Category::when($q, function($query, $q) {
+            return $query->whereLike('name', "%{$q}%");
+        })->orderBy('created_at', 'desc')->paginate(5)->appends(['q' => $q]);
 
         return view('admin.categories.index', compact('categories'));
     }
@@ -47,11 +50,16 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Request $request, Category $category)
     {
+        $q = $request->input('q');
+
         $items = $category
             ->items()
-            ->orderBy('created_at', 'desc')
+            ->when($q, function($query, $q) {
+                return $query->whereLike('name', "%{$q}%");
+            })
+            ->orderBy('created_at', 'asc')
             ->paginate(10);
 
         return view('admin.categories.show', compact('category', 'items'));
