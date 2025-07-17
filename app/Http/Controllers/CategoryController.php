@@ -49,7 +49,12 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('admin.categories.show', compact('category'));
+        $items = $category
+            ->items()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return view('admin.categories.show', compact('category', 'items'));
     }
 
     /**
