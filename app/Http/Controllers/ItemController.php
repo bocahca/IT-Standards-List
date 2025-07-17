@@ -40,7 +40,7 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Category $category, Item $item)
     {
         return view('admin.items.edit', compact('category', 'item'));
     }
