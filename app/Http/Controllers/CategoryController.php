@@ -34,13 +34,14 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'item' => 'required|string|max:255',
-            'standard' => 'nullable|string',
-            'recommendation' => 'nullable|string',
+            'name' => 'required|string|max:255',
         ]);
 
-        Category::create($data);
-        return redirect()->route('admin.categories.index')->with('success', 'Kategori baru ditambahkan.');
+        $category =Category::create($data);
+
+        return redirect()
+            ->route('admin.categories.show', $category)
+            ->with('success', 'Kategori berhasil dibuat.');
     }
 
     /**
@@ -65,12 +66,14 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $data = $request->validate([
-            'item' => 'required|string|max:255',
-            'standard' => 'nullable|string',
-            'recommendation' => 'nullable|string',
+            'name' => 'required|string|max:255',
         ]);
+
         $category->update($data);
-        return redirect()->route('admin.categories.index')->with('success', 'Kategori berhasil diperbarui.');
+
+        return redirect()
+            ->route('admin.categories.index')
+            ->with('success', 'Kategori berhasil diubah.');
     }
 
     /**
