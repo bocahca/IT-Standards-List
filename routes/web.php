@@ -29,9 +29,9 @@ Route::middleware('auth')
 Route::middleware('auth')
      ->prefix('admin')
      ->name('admin.')
-     ->group(function () {
+     ->group(function(){
          Route::resource('categories.items', ItemController::class)
-              ->shallow();
+            ->scoped();
      });
 
 require __DIR__.'/auth.php';
