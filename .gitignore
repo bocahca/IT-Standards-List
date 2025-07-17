@@ -22,3 +22,22 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+/public/storage
+
+# Laravel runtime files (cache, sessions, views, testing)
+/storage/framework/*
+/storage/logs/*
+/storage/debugbar/*
+! /storage/framework/.gitignore
+! /storage/logs/.gitignore
+
+# NPM/Yarn debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage reports
+/coverage/
+
+.phpstorm.meta.php
+.vagrant/
