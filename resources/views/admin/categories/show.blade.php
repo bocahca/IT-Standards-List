@@ -31,7 +31,7 @@
             </div>
 
             {{-- Tambah Item (Primary CTA) --}}
-            <a href="#" class="px-4 py-2 bg-indigo-600 text-white rounded shadow-sm hover:bg-indigo-700 transition">
+            <a href="{{ route('admin.categories.items.create', $category) }}" class="px-4 py-2 bg-indigo-600 text-white rounded shadow-sm hover:bg-indigo-700 transition">
                 + Tambah Item
             </a>
         </div>
@@ -61,11 +61,11 @@
                                 <td class="px-4 py-2 border border-gray-300">{{ $item->standard }}</td>
                                 <td class="px-4 py-2 border border-gray-300">{{ $item->recommendation }}</td>
                                 <td class="px-4 py-2 border border-gray-300 space-x-2">
-                                    <a href="#"
+                                    <a href="{{ route('admin.categories.items.edit', [$category, $item]) }}"
                                         class="px-2 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition">
                                         Edit
                                     </a>
-                                    <form action="#" method="POST" class="inline"
+                                    <form action="{{ route('admin.categories.items.destroy', [$category, $item]) }}" method="POST" class="inline"
                                         onsubmit="return confirm('Yakin ingin menghapus item ini?')">
                                         @csrf
                                         @method('DELETE')
