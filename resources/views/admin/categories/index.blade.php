@@ -3,9 +3,16 @@
 
 @section('content')
 <div class="container mx-auto py-10 space-y-6">
+    <div class="flex justify-end mb-6">
+        <a href="{{ route('admin.categories.create') }}"
+        class="inline-block px-4 py-2 bg-green-600 text-white font-semibold rounded-md shadow-sm
+                hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+        + Tambah Kategori
+        </a>
+    </div>
     @forelse($categories as $category)
         <div class="bg-white shadow-lg rounded-lg p-6">
-            <!-- Header Kategori dan Aksi -->
+            <!-- Header -->
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xl font-semibold text-gray-800">{{ $category->name }}</h2>
                 <div class="flex space-x-2">
