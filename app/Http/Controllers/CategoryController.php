@@ -13,14 +13,24 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $q = $request->input('q');
+        $q = $request->input('q', '');
 
+        $categories = Category::with('items')
+            ->when($q, function ($query) use ($q) {
+                $query->where(function ($sub) use ($q) {
+                    $sub->where('name', 'ILIKE', "%{$q}%") // untuk PostgreSQL, MySQL bisa 'like'
+                        ->orWhereHas('items', function ($qi) use ($q) {
+                            $qi->where('name', 'ILIKE', "%{$q}%")
+                            ->orWhere('standard', 'ILIKE', "%{$q}%")
+                            ->orWhere('recommendation', 'ILIKE', "%{$q}%");
+                        });
+                });
+            })
+            ->orderByDesc('created_at')
+            ->paginate(5)
+            ->appends(['q' => $q]);
 
-        $categories = Category::when($q, function($query, $q) {
-            return $query->whereLike('name', "%{$q}%");
-        })->orderBy('created_at', 'desc')->paginate(5)->appends(['q' => $q]);
-
-        return view('admin.categories.index', compact('categories'));
+        return view('admin.categories.index', compact('categories', 'q'));
     }
 
     /**

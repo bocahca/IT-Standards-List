@@ -6,29 +6,26 @@
         <div class="flex justify-between items-center mb-6">
             {{-- Search form + reset --}}
             <form method="GET" action="{{ route('admin.categories.index') }}" class="flex items-center space-x-2">
-                <input type="text" name="q" value="{{ $q ?? '' }}" placeholder="Cari kategori..."
+                <input type="text" name="q" value="{{ $q }}"
+                    placeholder="Cari keyword..."
                     class="px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring focus:ring-indigo-200" />
                 <button type="submit"
                     class="inline-flex items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-r-md
                        hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-200 transition">
-                    <!-- Heroicon: magnifying glass -->
+                    <!-- icon -->
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                     </svg>
-
                     <span class="ml-2">Cari</span>
                 </button>
-
-                {{-- Reset link muncul jika ada query --}}
                 @if (request()->filled('q'))
                     <a href="{{ route('admin.categories.index') }}"
                         class="px-3 py-2 bg-gray-100 text-gray-600 rounded hover:bg-gray-200 transition">
-                        kembali
+                        Tampilkan Semua
                     </a>
                 @endif
-
             </form>
 
             {{-- Tombol Tambah Kategori --}}
