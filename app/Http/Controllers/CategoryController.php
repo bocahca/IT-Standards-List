@@ -9,6 +9,31 @@ use Illuminate\Validation\Rules\Can;
 class CategoryController extends Controller
 {
     /**
+     * Display a listing of categories for guest.
+     */
+    public function publicIndex(Request $request)
+    {
+        $q = $request->input('q', '');
+
+        $categories = Category::with('items')
+            ->when($q, function ($query) use ($q) {
+                $query->where(function ($sub) use ($q) {
+                    $sub->where('name', 'ILIKE', "%{$q}%")
+                        ->orWhereHas('items', function ($qi) use ($q) {
+                            $qi->where('name', 'ILIKE', "%{$q}%")
+                                ->orWhere('standard', 'ILIKE', "%{$q}%")
+                                ->orWhere('recommendation', 'ILIKE', "%{$q}%");
+                        });
+                });
+            })
+            ->orderByDesc('created_at')
+            ->paginate(5)
+            ->appends(['q' => $q]);
+
+        return view('guest.categories.index', compact('categories', 'q'));
+    }
+
+    /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
@@ -18,11 +43,11 @@ class CategoryController extends Controller
         $categories = Category::with('items')
             ->when($q, function ($query) use ($q) {
                 $query->where(function ($sub) use ($q) {
-                    $sub->where('name', 'ILIKE', "%{$q}%") // untuk PostgreSQL, MySQL bisa 'like'
+                    $sub->where('name', 'ILIKE', "%{$q}%")
                         ->orWhereHas('items', function ($qi) use ($q) {
                             $qi->where('name', 'ILIKE', "%{$q}%")
-                            ->orWhere('standard', 'ILIKE', "%{$q}%")
-                            ->orWhere('recommendation', 'ILIKE', "%{$q}%");
+                                ->orWhere('standard', 'ILIKE', "%{$q}%")
+                                ->orWhere('recommendation', 'ILIKE', "%{$q}%");
                         });
                 });
             })
@@ -50,7 +75,7 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        $category =Category::create($data);
+        $category = Category::create($data);
 
         return redirect()
             ->route('admin.categories.show', $category)
@@ -66,7 +91,7 @@ class CategoryController extends Controller
 
         $items = $category
             ->items()
-            ->when($q, function($query, $q) {
+            ->when($q, function ($query, $q) {
                 return $query->whereLike('name', "%{$q}%");
             })
             ->orderBy('created_at', 'asc')
@@ -107,5 +132,4 @@ class CategoryController extends Controller
         $category->delete();
         return redirect()->route('admin.categories.index')->with('success', 'Kategori berhasil dihapus.');
     }
-
 }
