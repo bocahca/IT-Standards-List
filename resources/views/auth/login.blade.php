@@ -1,4 +1,12 @@
 <x-guest-layout>
+    @section('title', 'Admin Login')
+
+    <div class="text-center mb-6">
+        <h1 class="text-2x1 font-bold text-gray-700">
+            IT Standards Admin Login
+        </h1>
+    </div>
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
