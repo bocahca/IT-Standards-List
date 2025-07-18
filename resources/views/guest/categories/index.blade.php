@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<title>@yield('title', 'IT Standards Category')</title>
 @section('content')
     <div class="container mx-auto py-10 space-y-6">
 

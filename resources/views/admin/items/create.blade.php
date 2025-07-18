@@ -1,6 +1,6 @@
 {{-- resources/views/admin/items/create.blade.php --}}
 @extends('layouts.app')
-
+<title>@yield('title', 'IT Standards Category')</title>
 @section('content')
 <div class="flex justify-center py-10">
   <div class="w-full max-w-lg bg-white shadow-lg rounded-lg p-6">
