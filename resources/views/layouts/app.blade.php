@@ -13,6 +13,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link rel="icon" href="{{ asset('logo-komdigi.ico') }}" type="image/x-icon">
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
