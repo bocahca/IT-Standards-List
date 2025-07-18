@@ -104,7 +104,7 @@ Includes:
   - Manage categories & items via the CRUD UI  
 
 - **Guest**  
-  - Visit `/` or `/categories` to browse all categories  
+  - Visit `/` to browse all categories  
   - Click **View Detail** on a card to expand full items list  
   - Use the search bar to filter by keywords  
 
@@ -130,18 +130,3 @@ Includes:
 - Logo: place `logo-komdigi.png` in `public/images/` and reference via `asset('images/logo-komdigi.png')`  
 
 ---
-
-## 🤝 Contributing
-
-1. Fork repo  
-2. Create feature branch (`git checkout -b feat/my-feature`)  
-3. Commit & push  
-4. Open a Pull Request  
-
-Please follow PSR-12 coding style and include tests for new features.
-
----
-
-## 📄 License
-
-This project is open-source under the [MIT license](LICENSE).
