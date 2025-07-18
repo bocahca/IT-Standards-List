@@ -1,36 +1,19 @@
-<?php
+    <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ItemController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
+    use App\Http\Controllers\CategoryController;
+    use App\Http\Controllers\ItemController;
+    use App\Http\Controllers\ProfileController;
+    use Illuminate\Support\Facades\Route;
 
-Route::get('/', [CategoryController::class, 'publicIndex'])
-     ->name('categories.index');
+    Route::get('/', [CategoryController::class, 'publicIndex'])
+        ->name('categories.index');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
-Route::middleware('auth')
-     ->prefix('admin')
-     ->name('admin.')
-     ->group(function () {
-         Route::resource('categories', CategoryController::class);
-    });
-
-Route::middleware('auth')
-     ->prefix('admin')
-     ->name('admin.')
-     ->group(function(){
-         Route::resource('categories.items', ItemController::class)
-            ->scoped();
-     });
-
-require __DIR__.'/auth.php';
+    Route::middleware('auth')
+        ->prefix('admin')
+        ->name('admin.')
+        ->group(function () {
+            Route::resource('categories', CategoryController::class);
+            Route::resource('categories.items', ItemController::class)
+                ->scoped();
+        });
+    require __DIR__.'/auth.php';
