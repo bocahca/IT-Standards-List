@@ -61,7 +61,7 @@
                             <col style="width:40%">
                             <col style="width:35%">
                         </colgroup>
-                        <thead class="bg-blue-200">
+                        <thead class="bg-blue-200 text-left">
                             <tr>
                                 <th class="px-4 py-2 text-xs uppercase">No</th>
                                 <th class="px-4 py-2 text-xs uppercase">Item</th>
