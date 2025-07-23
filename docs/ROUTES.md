@@ -1,6 +1,5 @@
 # Web Routes
 
-Dokumentasi rute (web) untuk aplikasi **IT Standards Category**.  
 
 | Method     | URI                                           | Name                              | Controller & Method                         | Middleware           |
 | ---------- | --------------------------------------------- | --------------------------------- | -------------------------------------------- | -------------------- |
