@@ -85,8 +85,8 @@
                 {{-- Toggle detail button --}}
                 <button + @click="open = !open"
                     class="absolute bottom-4 right-4 flex items-center space-x-1 p-2 bg-indigo-100 text-indigo-600 rounded-full hover:bg-indigo-200 transition"
-                    :title="open ? 'Sembunyikan detail' : 'Tampilkan detail'">
-                    <span class="text-sm font-medium" x-text="open ? 'Sembunyikan Detail' : 'View Detail'">
+                    :title="open ? 'Hide detail' : 'Tampilkan detail'">
+                    <span class="text-sm font-medium" x-text="open ? 'Hide Detail' : 'View Detail'">
                         + </span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform transition-transform"
                         :class="open ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" + stroke="currentColor"
