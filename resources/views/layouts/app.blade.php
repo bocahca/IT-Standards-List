@@ -13,6 +13,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @livewireStyles
         <link rel="icon" href="{{ asset('logo-komdigi.ico') }}" type="image/x-icon">
     </head>
     <body class="font-sans antialiased">
@@ -33,5 +34,6 @@
                 @yield('content')
             </main>
         </div>
+        @livewireScripts
     </body>
 </html>
