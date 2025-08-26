@@ -110,19 +110,6 @@ Includes:
 
 ---
 
-## 🔄 Testing
-
-- **Unit & Feature tests** (Pest / PHPUnit)  
-  ```bash
-  php artisan test
-  ```
-- **Browser tests** (optional Dusk)  
-  ```bash
-  php artisan dusk
-  ```
-
----
-
 ## 🎨 Theming
 
 - Brand palette & fonts live in `tailwind.config.js` under `theme.extend.colors` & `fontFamily`  
